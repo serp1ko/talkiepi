@@ -10,6 +10,7 @@ Type = simple
 ExecStart = /home/mumble/bin/talkiepi
 Restart = on-abort  
 RestartSec = 5
+Nice = -20
 
 [Install]
 WantedBy = multi-user.target
