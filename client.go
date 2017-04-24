@@ -122,7 +122,7 @@ func (b *Talkiepi) OnConnect(e *gumble.ConnectEvent) {
 	}
 
 	if b.ChannelName != "" {
-		b.ChangeChannel(b.ChannelName)
+		b.ChangeChannelByName(b.ChannelName)
 	}
 }
 
@@ -150,13 +150,18 @@ func (b *Talkiepi) OnDisconnect(e *gumble.DisconnectEvent) {
 	b.ReConnect()
 }
 
-func (b *Talkiepi) ChangeChannel(ChannelName string) {
-	channel := b.Client.Channels.Find(ChannelName)
-	if channel != nil {
-		b.Client.Self.Move(channel)
-	} else {
-		fmt.Printf("Unable to find channel: %s\n", ChannelName)
+func (b *Talkiepi) ChangeChannelByName(ChannelName string) {
+	for _, channel := range b.Client.Channels {
+		if channel.Name == ChannelName {
+			b.ChangeChannel(channel)
+			return
+		}
 	}
+	fmt.Printf("Unable to find channel: %s\n", ChannelName)
+}
+
+func (b *Talkiepi) ChangeChannel(channel *gumble.Channel) {
+	b.Client.Self.Move(channel)
 }
 
 func (b *Talkiepi) ParticipantLEDUpdate() {
