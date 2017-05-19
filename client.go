@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 	"time"
+	"os/exec"
 
 	"github.com/dchote/gumble/gumble"
 	"github.com/dchote/gumble/gumbleopenal"
@@ -163,6 +164,12 @@ func (b *Talkiepi) ChangeChannelByName(ChannelName string) {
 func (b *Talkiepi) ChangeChannel(channel *gumble.Channel) {
 	b.Client.Self.Move(channel)
 	b.ChannelName = channel.Name
+
+	cmd := exec.Command("speech", "channel " + b.ChannelName)
+	err := cmd.Run()
+	if err != nil {
+		fmt.Printf("Failed to run speech command")
+	}
 }
 
 func (b *Talkiepi) NextChannel() {
