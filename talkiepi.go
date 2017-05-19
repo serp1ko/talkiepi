@@ -10,10 +10,11 @@ import (
 
 // Raspberry Pi GPIO pin assignments (CPU pin definitions)
 const (
-	OnlineLEDPin       uint = 5
-	ParticipantsLEDPin uint = 6
-	TransmitLEDPin     uint = 12
-	ButtonPin          uint = 26
+	OnlineLEDPin        uint = 5
+	ParticipantsLEDPin  uint = 6
+	TransmitLEDPin      uint = 12
+	PushToTalkButtonPin uint = 26
+	SelectButtonPin     uint = 16
 )
 
 type Talkiepi struct {
@@ -31,10 +32,12 @@ type Talkiepi struct {
 	IsConnected    bool
 	IsTransmitting bool
 
-	GPIOEnabled     bool
-	OnlineLED       gpio.Pin
-	ParticipantsLED gpio.Pin
-	TransmitLED     gpio.Pin
-	Button          gpio.Pin
-	ButtonState     uint
+	GPIOEnabled           bool
+	OnlineLED             gpio.Pin
+	ParticipantsLED       gpio.Pin
+	TransmitLED           gpio.Pin
+	PushToTalkButton      gpio.Pin
+	PushToTalkButtonState uint
+	SelectButton          gpio.Pin
+	SelectButtonState     uint
 }

@@ -162,6 +162,30 @@ func (b *Talkiepi) ChangeChannelByName(ChannelName string) {
 
 func (b *Talkiepi) ChangeChannel(channel *gumble.Channel) {
 	b.Client.Self.Move(channel)
+	b.ChannelName = channel.Name
+}
+
+func (b *Talkiepi) NextChannel() {
+	var found bool = false
+	var channel *gumble.Channel = nil
+
+	if b.IsConnected == false {
+		return
+	}
+	for _, ch := range b.Client.Channels {
+		if found == true {
+			channel = ch
+			break
+		}
+
+		if ch.Name == b.ChannelName {
+			found = true;
+		}
+	}
+	if channel == nil {
+		channel = b.Client.Channels[0]
+	}
+	b.ChangeChannel(channel)
 }
 
 func (b *Talkiepi) ParticipantLEDUpdate() {
