@@ -8,9 +8,9 @@ import (
 	"time"
 	"os/exec"
 
-	"github.com/dchote/gumble/gumble"
-	"github.com/dchote/gumble/gumbleopenal"
-	"github.com/dchote/gumble/gumbleutil"
+	"github.com/serp1ko/gumble/gumble"
+	"github.com/serp1ko/gumble/gumbleopenal"
+	"github.com/serp1ko/gumble/gumbleutil"
 	"github.com/kennygrant/sanitize"
 )
 

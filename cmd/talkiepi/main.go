@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/dchote/gumble/gumble"
-	_ "github.com/dchote/gumble/opus"
-	"github.com/dchote/talkiepi"
+	"github.com/serp1ko/gumble/gumble"
+	_ "github.com/serp1ko/gumble/opus"
+	"github.com/serp1ko/talkiepi"
 )
 
 func main() {
