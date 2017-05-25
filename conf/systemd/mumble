@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export PATH=${HOME}/bin:$PATH
+
+exec ~/bin/talkiepi
+
