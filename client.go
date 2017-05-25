@@ -21,13 +21,11 @@ func (b *Talkiepi) Init() {
 	b.initGPIO()
 
 	b.Connect()
+}
 
-	// our main run loop here... keep things alive
-	keepAlive := make(chan bool)
-	exitStatus := 0
-
-	<-keepAlive
-	os.Exit(exitStatus)
+func (b *Talkiepi) CleanUp() {
+	b.Client.Disconnect()
+	b.LEDOffAll()
 }
 
 func (b *Talkiepi) Connect() {

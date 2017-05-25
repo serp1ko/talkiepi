@@ -6,6 +6,8 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/serp1ko/gumble/gumble"
 	_ "github.com/serp1ko/gumble/opus"
@@ -60,4 +62,13 @@ func main() {
 	}
 
 	b.Init()
+
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+	exitStatus := 0
+
+	<-sigs
+	b.CleanUp()
+
+	os.Exit(exitStatus)
 }

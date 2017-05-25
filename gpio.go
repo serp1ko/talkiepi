@@ -89,3 +89,9 @@ func (b *Talkiepi) LEDOff(LED gpio.Pin) {
 
 	LED.Low()
 }
+
+func (b *Talkiepi) LEDOffAll() {
+	b.LEDOff(b.OnlineLED)
+	b.LEDOff(b.ParticipantsLED)
+	b.LEDOff(b.TransmitLED)
+}
